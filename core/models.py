@@ -1,3 +1,4 @@
+from http import client
 from django.db import models
 from imagekit.models import ProcessedImageField, ImageSpecField
 from imagekit.processors import ResizeToFill
@@ -64,11 +65,14 @@ class Project(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = ProcessedImageField(
-        processors=[ResizeToFill(200, 200)],
+        processors=[ResizeToFill(372, 262)],
         format='JPEG',
         options={'quality': 100},
         upload_to='projects/images/'
     )
+    client = models.CharField(max_length=100)
+    client_link = models.URLField(blank=True, null=True)
+    year = models.IntegerField(default=0)
     url = models.URLField(blank=True)
 
     def __str__(self):
@@ -106,7 +110,7 @@ class WorkExperience(models.Model):
 
 class Contact(models.Model):
     name = models.CharField(max_length=100)
-    phone = models.CharField(max_length=100, blank=True, null=True)
+    subject = models.CharField(max_length=100, blank=True, null=True)
     email = models.EmailField(max_length=100)
     message = models.TextField()
 
