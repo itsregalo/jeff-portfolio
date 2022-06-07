@@ -149,7 +149,7 @@
                 {% for stack in my_stack %}
                     <div class="col-md-4 col-sm-12">
                         <div class="mh-service-item shadow-1 dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                            <i class="fa fa-bullseye purple-color"></i>
+                            <i class="fa {{ stack.fa_object }} purple-color"></i>
                             <h3>{{ stack.name }}</h3>
                             <p>
                                {{ stack.description }}
@@ -392,7 +392,7 @@
                     <div class="col-sm-12 col-md-6 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
                         <div class="mh-map">
                             <div id="mh-map" class="shadow-1">
-                                <img src="{% static 'assets/images/jeff.jpeg' %}" alt="" srcset="">
+                                
                             </div>
                         </div>
                     </div>
