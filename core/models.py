@@ -1,9 +1,9 @@
 from django.db import models
-from pendulum import duration
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
 #import RichTextField
+from ckeditor.fields import RichTextField
 
 
 # Create your models here.
@@ -15,20 +15,13 @@ class Portfolio(models.Model):
     email = models.EmailField(max_length=100)
     phone_no = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
-    facebook = models.CharField(max_length=100)
-    twitter = models.CharField(max_length=100)
-    linkedin = models.CharField(max_length=100)
-    github = models.CharField(max_length=100)
+    facebook = models.CharField(max_length=100, blank=True, null=True)
+    twitter = models.CharField(max_length=100,  blank=True, null=True)
+    linkedin = models.CharField(max_length=100,  blank=True, null=True)
+    github = models.CharField(max_length=100,  blank=True, null=True)
     description = models.TextField()
     image = models.ImageField(upload_to='portfolio/images/')
     url = models.URLField(blank=True)
-
-    def __str__(self):
-        return self.name
-
-class TechnicalSkill(models.Model):
-    name = models.CharField(max_length=100)
-    percentage = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -40,13 +33,26 @@ class ProffessionalSkill(models.Model):
     def __str__(self):
         return self.name
 
+class ProgrammingLanguage(models.Model):
+    name = models.CharField(max_length=100)
+    percentage = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
 class AboutMe(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='about/images/')
     cv = models.FileField(upload_to='about/cv/', blank=True)
 
+    class Meta:
+        verbose_name_plural = 'About Me'
+
+
     def __str__(self):
-        return self.name
+        return f"main {self.pk}"
+
+
 
 class Project(models.Model):
     name = models.CharField(max_length=100)
@@ -58,6 +64,14 @@ class Project(models.Model):
         upload_to='projects/images/'
     )
     url = models.URLField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+class MyTechStach(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    fa_object = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
@@ -75,7 +89,18 @@ class WorkExperience(models.Model):
     name = models.CharField(max_length=100)
     company = models.CharField(max_length=100)
     duration = models.CharField(max_length=100)
-    description = models.TextField()
+    #richtextfield
+    description = RichTextField()
+    
+    def __str__(self):
+        return self.name
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100, blank=True, null=True)
+    email = models.EmailField(max_length=100)
+    message = models.TextField()
 
     def __str__(self):
         return self.name
