@@ -293,22 +293,26 @@
                 <div class="col-sm-12 section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
                     <h3>Projects</h3>
                 </div>
-                <div class="col-sm-12 col-md-4">
-                     <div class="mh-blog-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                        <img src="{% static 'assets/images/b-3.png' %}" alt="" class="img-fluid">
-                        <div class="blog-inner">
-                            <h2><a href="">Farmers Choice</a></h2>
-                            <div class="mh-blog-post-info">
-                                <ul>
-                                    <li><a href="#">2020</a></li>
-                                    <li><strong>For</strong><a href="#">INNOVATIONCLUB</a></li>
-                                </ul>
-                            </div>
-                            <p>This was a project to assist farmers to ask experienced farmers on issues they face</p>
-                            <a href="">Read More</a>
-                        </div>
-                    </div>
-                </div>
+               {% for project in projects %}
+               
+               <div class="col-sm-12 col-md-4">
+                <div class="mh-blog-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                   <img src="{{project.image.url}}" alt="" class="img-fluid">
+                   <div class="blog-inner">
+                       <h2><a href="">{{project.name}}</a></h2>
+                       <div class="mh-blog-post-info">
+                           <ul>
+                               <li><a href="#">{{project.year}}</a></li>
+                               <li><strong>For</strong><a href="#">{{ project.client }}</a></li>
+                           </ul>
+                       </div>
+                       <p>{{ project.description }}</p>
+                       <a href="{{ project.url }}">Take a Look</a>
+                   </div>
+               </div>
+           </div>
+               
+               {% endfor %}
             </div>
         </div>
     </section>        

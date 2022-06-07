@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
-from core.models import AboutMe, Education, MyTechStach, Portfolio, ProffessionalSkill, ProgrammingLanguage, WorkExperience
+from core.models import AboutMe, Education, MyTechStach, Portfolio, ProffessionalSkill, ProgrammingLanguage, Project, WorkExperience
 from .views import *
 
 from .forms import ContactForm
@@ -18,6 +18,7 @@ def IndexView(request):
     education = Education.objects.all()
     work_experience = WorkExperience.objects.all()
     my_stack = MyTechStach.objects.all()
+    projects = Project.objects.all()
 
     contact_form = ContactForm()
 
@@ -35,6 +36,7 @@ def IndexView(request):
         'education': education,
         'work_experience': work_experience,
         'my_stack': my_stack,
+        'projects': projects,
         'contact_form': contact_form
 
     }
