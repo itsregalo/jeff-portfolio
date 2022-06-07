@@ -1,5 +1,4 @@
 from django.db import models
-from numpy import percentile
 
 # Create your models here.
 
