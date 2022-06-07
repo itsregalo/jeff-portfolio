@@ -371,20 +371,24 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                        <form id="contactForm" class="single-form quate-form wow fadeInUp" data-toggle="validator">
+                        <form method="POST"  class="single-form quate-form wow fadeInUp">{% csrf_token %}
                             <div id="msgSubmit" class="h3 text-center hidden"></div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-12">
-                                    <input name="name" class="contact-name form-control" id="name" type="text" placeholder="First Name" required>
+                                    {{ contact_form.name}}
+                                    <small class="text-danger">{{ contact_form.name.errors }}</small>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
-                                    <input name="name" class="contact-email form-control" id="L_name" type="text" placeholder="Last Name" required>
+                                    {{ contact_form.email }}
+                                    <small class="text-danger">{{ contact_form.email.errors }}</small>
                                 </div>
                                 <div class="col-sm-12">
-                                    <input name="name" class="contact-subject form-control" id="email" type="email" placeholder="Your Email" required>
+                                    {{ contact_form.subject }}
+                                    <small class="text-danger">{{ contact_form.subject.errors }}</small>
                                 </div>
                                 <div class="col-sm-12">
-                                    <textarea class="contact-message" id="message" rows="6" placeholder="Your Message" required></textarea>
+                                    {{ contact_form.message }}
+                                    <small class="text-danger">{{ contact_form.message.errors }}</small>
                                 </div>
                                 <!-- Subject Button -->
                                 <div class="btn-form col-sm-12">
