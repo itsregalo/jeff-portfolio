@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
     
 <head>
@@ -43,6 +44,12 @@
         <link rel="alternate stylesheet" href="{% static 'assets/css/colors/slate.css' %}" title="slate">
         <link rel="alternate stylesheet" href="{% static 'assets/css/colors/yellow.css' %}" title="yellow">
     </head>
+
+    
+    {% block body %}
+        
+    {% endblock body %}
+        
     
     
     <!--
