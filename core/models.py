@@ -1,5 +1,5 @@
 from django.db import models
-from imagekit.models import ProcessedImageField
+from imagekit.models import ProcessedImageField, ImageSpecField
 from imagekit.processors import ResizeToFill
 
 #import RichTextField
@@ -21,6 +21,12 @@ class Portfolio(models.Model):
     github = models.CharField(max_length=100,  blank=True, null=True)
     description = models.TextField()
     image = models.ImageField(upload_to='portfolio/images/')
+    image_thumbnail = ImageSpecField(
+        source='image',
+        processors=[ResizeToFill(400, 400)],
+        format='JPEG',
+        options={'quality': 100},
+    )
     url = models.URLField(blank=True)
 
     def __str__(self):
@@ -80,17 +86,19 @@ class Education(models.Model):
     name = models.CharField(max_length=100)
     institution = models.CharField(max_length=100)
     duration = models.CharField(max_length=100)
-    description = models.TextField()
+    achievement = models.CharField(max_length=100, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+
 
     def __str__(self):
         return self.name
 
 class WorkExperience(models.Model):
     name = models.CharField(max_length=100)
-    company = models.CharField(max_length=100)
+    institution = models.CharField(max_length=100)
     duration = models.CharField(max_length=100)
     #richtextfield
-    description = RichTextField()
+    description = RichTextField(blank=True, null=True)
     
     def __str__(self):
         return self.name
